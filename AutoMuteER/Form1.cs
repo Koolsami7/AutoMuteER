@@ -26,10 +26,10 @@ namespace AutoMuteER
             {
                 WindowsPrincipal p = new WindowsPrincipal(id);
                 elv = p.IsInRole(WindowsBuiltInRole.Administrator);
-				if (!elv)
-				{
-					checkBox1.Enabled = false;
-				}
+		if (!elv)
+		{
+			checkBox1.Enabled = false;
+		}
             }
             
             timer1.Start();
@@ -91,21 +91,21 @@ namespace AutoMuteER
 		
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-			using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
+	    using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
             {
-				if (checkBox1.Checked)
-				{
-					key.SetValue("AutoMuteER", "\"" + Application.ExecutablePath + "\"");
-					Properties.Settings.Default.loadWithWindows = true;
-					Properties.Settings.Default.Save();
-				}
-				else
-				{
-					key.DeleteValue("AutoMuteER", false);
-					Properties.Settings.Default.loadWithWindows = false;
-					Properties.Settings.Default.Save();
-				}
-			}
+		if (checkBox1.Checked)
+		{
+			key.SetValue("AutoMuteER", "\"" + Application.ExecutablePath + "\"");
+			Properties.Settings.Default.loadWithWindows = true;
+			Properties.Settings.Default.Save();
+		}
+		else
+		{
+			key.DeleteValue("AutoMuteER", false);
+			Properties.Settings.Default.loadWithWindows = false;
+			Properties.Settings.Default.Save();
+		}
+	    }
         }
 		
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -116,7 +116,6 @@ namespace AutoMuteER
                 this.WindowState = FormWindowState.Minimized;
                 this.ShowInTaskbar = false;
                 this.Hide();
-
             }
         }
 
@@ -132,11 +131,11 @@ namespace AutoMuteER
             if (FormWindowState.Minimized == this.WindowState)
             {
                 notifyIcon1.Visible = true;
-				notifyIcon1.Icon = SystemIcons.Information;
+		notifyIcon1.Icon = SystemIcons.Information;
 
-				notifyIcon1.BalloonTipText = "Minimized";
-				notifyIcon1.BalloonTipTitle = "The application is running in the background.";
-				notifyIcon1.ShowBalloonTip(500);
+		notifyIcon1.BalloonTipText = "Minimized";
+		notifyIcon1.BalloonTipTitle = "The application is running in the background.";
+		notifyIcon1.ShowBalloonTip(500);
             }
         }
 
